@@ -12,12 +12,15 @@ const AddUsers = () => {
 
     const handelInputBlur = event =>{
         const value = event.target.value;
+        //console.log('value=',value);
         const field = event.target.name;
+        //console.log('fild=',field);
         //console.log(value, field);
         const newUser = {...user}
+        //console.log('newUser=', newUser);
         newUser[field] = value; 
         setUser(newUser); 
-        console.log(newUser);
+        //console.log('user=', user);
     }
 
 
