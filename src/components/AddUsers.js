@@ -1,3 +1,4 @@
+import { queryAllByAttribute } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { useState } from 'react';
 
@@ -8,6 +9,24 @@ const AddUsers = () => {
     const handleAddUser = event =>{
         event.preventDefault();
         console.log(user);
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+
+        })
+        .then(res => res.json())
+        .then(data => {
+           // console.log(data);
+            if(data.acknowledged){
+                alert('User added successfully');
+                event.target.reset();
+            }
+        })
+
     }
 
     const handelInputBlur = event =>{
